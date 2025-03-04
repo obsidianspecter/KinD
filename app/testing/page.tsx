@@ -8,6 +8,8 @@ export default function TestingPage() {
       <h1 className="text-4xl font-bold mb-8">Testing the Application</h1>
       <MarkdownContent>
         {`
+> **Note for Windows Users:** If you're on Windows and have installed \`kubectl\` as \`kubectl.exe\`, replace \`kubectl\` with \`kubectl.exe\` in your commands.
+
 ## Verifying Deployment Status
 
 Check the status of all components:

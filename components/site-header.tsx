@@ -1,11 +1,12 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { ThemeToggle } from './theme-toggle';
-import { Github, Linkedin } from 'lucide-react';
+import { Github, Linkedin, Menu, X } from 'lucide-react';
 
 const navigation = [
   { name: 'Introduction', href: '/introduction' },
@@ -21,6 +22,7 @@ const navigation = [
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <motion.header
@@ -32,11 +34,10 @@ export function SiteHeader() {
       <div className="container flex h-14 items-center justify-between">
         <div className="flex items-center">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="font-bold sm:inline-block">
-              KinD Tutorial
-            </span>
+            <span className="font-bold sm:inline-block">KinD Tutorial</span>
           </Link>
-          <nav className="flex items-center space-x-4 text-sm font-medium">
+          {/* Desktop Navigation */}
+          <nav className="hidden sm:flex items-center space-x-4 text-sm font-medium">
             {navigation.map((item, index) => (
               <motion.div
                 key={item.href}
@@ -48,9 +49,7 @@ export function SiteHeader() {
                   href={item.href}
                   className={cn(
                     'transition-colors hover:text-foreground/80',
-                    pathname === item.href
-                      ? 'text-foreground'
-                      : 'text-foreground/60'
+                    pathname === item.href ? 'text-foreground' : 'text-foreground/60'
                   )}
                 >
                   {item.name}
@@ -60,6 +59,15 @@ export function SiteHeader() {
           </nav>
         </div>
         <div className="flex items-center space-x-4">
+          {/* Mobile Menu Toggle */}
+          <div className="sm:hidden">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-foreground/60 hover:text-foreground"
+            >
+              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
           <Link
             href="https://github.com/anvin141"
             target="_blank"
@@ -77,6 +85,26 @@ export function SiteHeader() {
           <ThemeToggle />
         </div>
       </div>
+      {/* Mobile Navigation Menu */}
+      {isMobileMenuOpen && (
+        <nav className="sm:hidden bg-background border-t border-border">
+          <div className="container flex flex-col space-y-2 py-2">
+            {navigation.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={cn(
+                  'block px-4 py-2 transition-colors hover:bg-muted',
+                  pathname === item.href ? 'text-foreground font-semibold' : 'text-foreground/60'
+                )}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
+        </nav>
+      )}
     </motion.header>
   );
 }

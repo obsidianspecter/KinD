@@ -8,6 +8,8 @@ export default function CreateClusterPage() {
       <h1 className="text-4xl font-bold mb-8">Creating a KinD Cluster</h1>
       <MarkdownContent>
         {`
+> **Note for Windows Users:** If you're running KinD on Windows, ensure that your executable is named \`kind.exe\` and is available in your system PATH. The commands below work similarly in PowerShell or CMD.
+
 ## Simple Cluster Creation
 
 Create a basic single-node cluster:

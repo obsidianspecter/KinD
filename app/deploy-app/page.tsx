@@ -8,6 +8,8 @@ export default function DeployAppPage() {
       <h1 className="text-4xl font-bold mb-8">Deploying an Application</h1>
       <MarkdownContent>
         {`
+> **Note for Windows Users:** If you're on Windows and have installed \`kubectl\` as \`kubectl.exe\`, use that executable name in your commands (e.g., \`kubectl.exe apply -f nginx-deployment.yaml\`).
+
 ## Creating a Deployment
 
 Create a deployment configuration file (\`nginx-deployment.yaml\`):

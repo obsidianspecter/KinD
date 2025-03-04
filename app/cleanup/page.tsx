@@ -8,6 +8,8 @@ export default function CleanupPage() {
       <h1 className="text-4xl font-bold mb-8">Cleaning Up</h1>
       <MarkdownContent>
         {`
+> **Note for Windows Users:** If you're on Windows and have installed \`kubectl\` as \`kubectl.exe\`, replace \`kubectl\` with \`kubectl.exe\` in your commands.
+
 ## Removing Resources
 
 Clean up the deployed resources:
